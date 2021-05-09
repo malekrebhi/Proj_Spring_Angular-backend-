@@ -21,14 +21,14 @@ public class RendezVousController {
 	private RendezVousService RendezVousService;
 
 	//SELECT
-	@GetMapping("/RendezVous")
+	@GetMapping("/RendezVous/Select")
 	public List<Rendez_vous> SelectRendezVous(){
 	    return RendezVousService.SelectRendezVous();
 		
 	}
 	
 	//DELETE
-	@DeleteMapping("/RendezVous/{id}")
+	@DeleteMapping("/RendezVous/Delete/{id}")
 	public void DeleteRDV(@PathVariable int id) {
 		RendezVousService.DeleteRDV(id);
 		System.out.println("RdV supprimé !");
@@ -36,7 +36,7 @@ public class RendezVousController {
 	}
 	
 	//UPDATE
-	@PutMapping("/RendezVous")
+	@PutMapping("/RendezVous/Update")
 	public void UpdateRDV(@RequestBody Rendez_vous rdv) {
 		RendezVousService.UpdateRDV(rdv);
 		System.out.println("RdV modifié !");
@@ -44,7 +44,7 @@ public class RendezVousController {
 	}
 	
 	//ADD
-	@PostMapping("/RendezVous")
+	@PostMapping("/RendezVous/Add")
 	public void AddRDV(@RequestBody Rendez_vous rdv) {
 		RendezVousService.AddRDV(rdv);
 		System.out.println("RdV ajouté !");

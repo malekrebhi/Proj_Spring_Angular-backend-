@@ -23,21 +23,21 @@ public class AdminController {
 	private AdminService AdminService;
 
 	//SELECT
-	@GetMapping("/Admin")
+	@GetMapping("/Admin/Select")
 	public List<Administrateur> SelectAdmin(){
 		return AdminService.SelectAdmin();
 		
 	}
 	
 	//DELETE
-	@DeleteMapping( "/Admin/{id}")
+	@DeleteMapping( "/Admin/Delete/{id}")
 	public void DeleteAdmin(@PathVariable int id) {
 		AdminService.DeleteAdmin(id);
 		System.out.println("Admin supprimé !");
 	}
 	
 	//UPDATE
-	@PutMapping("/Admin")
+	@PutMapping("/Admin/Update")
 	public void UpdateAdmin(@RequestBody Administrateur admin) {
 		AdminService.UpdateAdmin(admin);
 		System.out.println("Admin modifié !");
@@ -45,7 +45,7 @@ public class AdminController {
 	}
 	
 	//ADD
-	@PostMapping("/Admin")
+	@PostMapping("/Admin/Add")
 	public void AddAdmin(@RequestBody Administrateur admin) {
 		AdminService.AddAdmin(admin);
 		System.out.println("Admin ajouté !");

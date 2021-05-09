@@ -21,14 +21,14 @@ public class CitoyenController {
 	private CitoyenService CitoyenService;
 
 	//SELECT
-	@GetMapping("/Citoyen")
+	@GetMapping("/Citoyen/Select")
 	public List<Citoyen> SelectCitoyen(){
 		return  CitoyenService.SelectCitoyen();
 		
 	}
 	
 	//DELETE
-	@DeleteMapping("/Citoyen/{id}")
+	@DeleteMapping("/Citoyen/Delete/{id}")
 	public void DeleteCitoyen(@PathVariable int id) {
 		CitoyenService.DeleteCitoyen(id);
 		System.out.println("Citoyen supprimé !");
@@ -36,7 +36,7 @@ public class CitoyenController {
 	}
 	
 	//UPDATE
-	@PutMapping("/Citoyen")
+	@PutMapping("/Citoyen/Update")
 	public void UpdateCitoyen(@RequestBody Citoyen citoyen) {
 		CitoyenService.UpdateCitoyen(citoyen);
 		System.out.println("Citoyen modifié !");
@@ -44,7 +44,7 @@ public class CitoyenController {
 	}
 	
 	//ADD
-	@PostMapping("/Citoyen")
+	@PostMapping("/Citoyen/Add")
 	public void AddCitoyen(@RequestBody Citoyen citoyen) {
 		CitoyenService.AddCitoyen(citoyen);
 		System.out.println("Citoyen ajouté !");

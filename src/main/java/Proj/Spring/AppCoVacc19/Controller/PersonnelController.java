@@ -20,14 +20,14 @@ public class PersonnelController {
 	private PersonnelService PersonnelService;
 
 	//SELECT
-	@GetMapping("/Personnel")
+	@GetMapping("/Personnel/Select")
 	public List<Personnel> SelectPersonnel(){
 		return PersonnelService.SelectPersonnel();
 		
 	}
 	
 	//DELETE
-	@DeleteMapping("/Personnel/{id}")
+	@DeleteMapping("/Personnel/Delete/{id}")
 	public void DeletePersonnel(@PathVariable int id) {
 		PersonnelService.DeletePersonnel(id);
 		System.out.println("Personnel supprimé !");
@@ -35,7 +35,7 @@ public class PersonnelController {
 	}
 	
 	//UPDATE
-	@PutMapping("/Personnel")
+	@PutMapping("/Personnel/Update")
 	public void UpdatePersonnel(@RequestBody Personnel personnel) {
 			PersonnelService.UpdatePersonnel(personnel);
 			System.out.println("Personnel modifié !");
@@ -43,7 +43,7 @@ public class PersonnelController {
 	}
 	
 	//ADD
-	@PostMapping("/Personnel")
+	@PostMapping("/Personnel/Add")
 	public void AddPersonnel(@RequestBody Personnel personnel) {
 			PersonnelService.AddPersonnel(personnel);
 			System.out.println("Personnel ajouté !");

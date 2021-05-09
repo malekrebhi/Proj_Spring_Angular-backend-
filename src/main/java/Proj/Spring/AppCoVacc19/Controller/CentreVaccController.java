@@ -23,14 +23,14 @@ public class CentreVaccController {
 	
 
 	//SELECT
-	@GetMapping("/Centre")
+	@GetMapping("/Centre/Select")
 	public List<Centre_Vaccination> SelectCentre(){
 		return CentreVaccService.SelectCentre();
 		
 	}
 	
 	//DELETE
-	@DeleteMapping("/Centre/{id}")
+	@DeleteMapping("/Centre/Delete/{id}")
 	public void DeleteCentre(@PathVariable int id) {
 		CentreVaccService.DeleteCentre(id);
 		System.out.println("Centre supprimé !");
@@ -38,7 +38,7 @@ public class CentreVaccController {
 	}
 	
 	//UPDATE
-	@PutMapping("/Centre")
+	@PutMapping("/Centre/Update")
     public void UpdateCentre(@RequestBody Centre_Vaccination centre) {
 		CentreVaccService.UpdateCentre(centre);
 		System.out.println("Centre modifié !");
@@ -47,7 +47,7 @@ public class CentreVaccController {
 
 	
 	//ADD
-	@PostMapping("/Centre")
+	@PostMapping("/Centre/Add")
     public void AddCentre(@RequestBody Centre_Vaccination centre) {
 		CentreVaccService.AddCentre(centre);
 		System.out.println("Centre ajouté !");
