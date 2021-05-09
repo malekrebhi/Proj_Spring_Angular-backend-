@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,10 +15,9 @@ import org.springframework.stereotype.Component;
 	public class Administrateur {
 	//CIN_A,nom_A,prenom_A,adresse_A, dateNaiss_A, tel_A, matricule
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "CIN_A" , unique=true)
 		private int CIN_A;
-		
+			
 		@Column(name = "nom_A")
 		private String nom_A;
 		
@@ -39,10 +36,10 @@ import org.springframework.stereotype.Component;
 		@Column(name = "matricule" , unique=true)
 		private int matricule;
 
-		public Administrateur(String nom_A, String prenom_A, String adresse_A, Date dateNaiss_A, int tel_A,
+		public Administrateur(int CIN_A, String nom_A, String prenom_A, String adresse_A, Date dateNaiss_A, int tel_A,
 				int matricule) {
 			super();
-			//CIN_A = cIN_A;
+			this.CIN_A = CIN_A;
 			this.nom_A = nom_A;
 			this.prenom_A = prenom_A;
 			this.adresse_A = adresse_A;

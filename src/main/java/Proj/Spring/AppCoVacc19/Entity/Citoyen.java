@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,7 +14,7 @@ import javax.persistence.Table;
 public class Citoyen  {
 //CIN_C,nom_C,prenom_C,adresse_C, dateNaiss_C, tel_C, etat
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	@Column(name = "CIN_C" , unique=true)
 	private int CIN_C;
 	@Column(name = "nom_C")
@@ -29,9 +27,9 @@ public class Citoyen  {
 	private int tel_C;
 	@Column(name = "etat")
 	private boolean etat=false;
-	public Citoyen(String nom_C, String prenom_C, Date dateNaiss_C, int tel_C) {
+	public Citoyen(int CIN_C,String nom_C, String prenom_C, Date dateNaiss_C, int tel_C) {
 		super();
-		//CIN_C = cIN_C;
+		this.CIN_C = CIN_C;
 		this.nom_C = nom_C;
 		this.prenom_C = prenom_C;
 		this.dateNaiss_C = dateNaiss_C;

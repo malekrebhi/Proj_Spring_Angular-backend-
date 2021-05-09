@@ -31,6 +31,7 @@ public class PersonnelService {
 	//UPDATE
 	public Personnel UpdatePersonnel(Personnel personnel) {
 		Personnel existingPersonnel= PersonnelRepository.findById(personnel.getCIN_P()).orElse(null);
+		existingPersonnel.setCIN_P(personnel.getCIN_P());
 		existingPersonnel.setNom_P(personnel.getNom_P());
 		existingPersonnel.setPrenom_P(personnel.getPrenom_P());
 		existingPersonnel.setAdresse_P(personnel.getAdresse_P());

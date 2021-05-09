@@ -28,13 +28,14 @@ public class CitoyenService {
 	}
 
 	//UPDATE
-	public Citoyen UpdateCitoyen(Citoyen centre) {
-		Citoyen existingCentre= CitoyenRepository.findById(centre.getCIN_C()).orElse(null);
-		existingCentre.setNom_C(centre.getNom_C());
-		existingCentre.setPrenom_C(centre.getPrenom_C());
-		existingCentre.setDateNaiss_C(centre.getDateNaiss_C());
-		existingCentre.setTel_C(centre.getTel_C());
-		existingCentre.setEtat(centre.isEtat());
+	public Citoyen UpdateCitoyen(Citoyen citoyen) {
+		Citoyen existingCentre= CitoyenRepository.findById(citoyen.getCIN_C()).orElse(null);
+		existingCentre.setCIN_C(citoyen.getCIN_C());
+		existingCentre.setNom_C(citoyen.getNom_C());
+		existingCentre.setPrenom_C(citoyen.getPrenom_C());
+		existingCentre.setDateNaiss_C(citoyen.getDateNaiss_C());
+		existingCentre.setTel_C(citoyen.getTel_C());
+		existingCentre.setEtat(citoyen.isEtat());
 		return CitoyenRepository.save(existingCentre);
 	}
 

@@ -31,6 +31,7 @@ public class AdminService {
 	//UPDATE
 	public Administrateur UpdateAdmin(Administrateur admin) {
 		Administrateur existingAdministrateur= AdminRepository.findById(admin.getCIN_A()).orElse(null);
+		existingAdministrateur.setCIN_A(admin.getCIN_A());
 		existingAdministrateur.setNom_A(admin.getNom_A());
 		existingAdministrateur.setPrenom_A(admin.getPrenom_A());
 		existingAdministrateur.setAdresse_A(admin.getAdresse_A());

@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,7 +13,7 @@ import javax.persistence.Table;
 public class Personnel {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	@Column(name = "CIN_P" , unique=true)
 	private int CIN_P;
 	
@@ -45,10 +43,10 @@ public class Personnel {
 
 	
 
-	public Personnel(String nom_P, String prenom_P, String adresse_P, Date dateNaiss_P, int tel_P,
+	public Personnel(int CIN_P,String nom_P, String prenom_P, String adresse_P, Date dateNaiss_P, int tel_P,
 			String horaire_P, float salaire_P, Centre_Vaccination centre) {
 		super();
-		//CIN_P = cIN_P;
+		this.CIN_P = CIN_P;
 		this.nom_P = nom_P;
 		this.prenom_P = prenom_P;
 		this.adresse_P = adresse_P;
