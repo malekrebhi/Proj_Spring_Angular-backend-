@@ -5,11 +5,14 @@ import Proj.Spring.AppCoVacc19.Service.CentreVaccService;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,14 +23,14 @@ public class CentreVaccController {
 	
 
 	//SELECT
-	@RequestMapping("/Centre")
+	@GetMapping("/Centre")
 	public List<Centre_Vaccination> SelectCentre(){
 		return CentreVaccService.SelectCentre();
 		
 	}
 	
 	//DELETE
-	@RequestMapping(method= RequestMethod.DELETE , value="/Centre/{id}")
+	@DeleteMapping("/Centre/{id}")
 	public void DeleteCentre(@PathVariable int id) {
 		CentreVaccService.DeleteCentre(id);
 		System.out.println("Centre supprimé !");
@@ -35,7 +38,7 @@ public class CentreVaccController {
 	}
 	
 	//UPDATE
-	@RequestMapping(method= RequestMethod.PUT , value="/Centre")
+	@PutMapping("/Centre")
     public void UpdateCentre(@RequestBody Centre_Vaccination centre) {
 		CentreVaccService.UpdateCentre(centre);
 		System.out.println("Centre modifié !");
@@ -44,7 +47,7 @@ public class CentreVaccController {
 
 	
 	//ADD
-	@RequestMapping(method= RequestMethod.POST , value="/Centre")
+	@PostMapping("/Centre")
     public void AddCentre(@RequestBody Centre_Vaccination centre) {
 		CentreVaccService.AddCentre(centre);
 		System.out.println("Centre ajouté !");

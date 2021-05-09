@@ -3,10 +3,12 @@ package Proj.Spring.AppCoVacc19.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import Proj.Spring.AppCoVacc19.Entity.Citoyen;
@@ -19,14 +21,14 @@ public class CitoyenController {
 	private CitoyenService CitoyenService;
 
 	//SELECT
-	@RequestMapping("/Citoyen")
+	@GetMapping("/Citoyen")
 	public List<Citoyen> SelectCitoyen(){
 		return  CitoyenService.SelectCitoyen();
 		
 	}
 	
 	//DELETE
-	@RequestMapping(method= RequestMethod.DELETE , value="/Citoyen/{id}")
+	@DeleteMapping("/Citoyen/{id}")
 	public void DeleteCitoyen(@PathVariable int id) {
 		CitoyenService.DeleteCitoyen(id);
 		System.out.println("Citoyen supprimé !");
@@ -34,7 +36,7 @@ public class CitoyenController {
 	}
 	
 	//UPDATE
-	@RequestMapping(method= RequestMethod.PUT , value="/Citoyen")
+	@PutMapping("/Citoyen")
 	public void UpdateCitoyen(@RequestBody Citoyen citoyen) {
 		CitoyenService.UpdateCitoyen(citoyen);
 		System.out.println("Citoyen modifié !");
@@ -42,7 +44,7 @@ public class CitoyenController {
 	}
 	
 	//ADD
-	@RequestMapping(method= RequestMethod.POST , value="/Citoyen")
+	@PostMapping("/Citoyen")
 	public void AddCitoyen(@RequestBody Citoyen citoyen) {
 		CitoyenService.AddCitoyen(citoyen);
 		System.out.println("Citoyen ajouté !");

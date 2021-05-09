@@ -3,10 +3,12 @@ package Proj.Spring.AppCoVacc19.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import  Proj.Spring.AppCoVacc19.Entity.Rendez_vous;
@@ -19,14 +21,14 @@ public class RendezVousController {
 	private RendezVousService RendezVousService;
 
 	//SELECT
-	@RequestMapping("/RendezVous")
+	@GetMapping("/RendezVous")
 	public List<Rendez_vous> SelectRendezVous(){
 	    return RendezVousService.SelectRendezVous();
 		
 	}
 	
 	//DELETE
-	@RequestMapping(method= RequestMethod.DELETE , value="/RendezVous/{id}")
+	@DeleteMapping("/RendezVous/{id}")
 	public void DeleteRDV(@PathVariable int id) {
 		RendezVousService.DeleteRDV(id);
 		System.out.println("RdV supprimé !");
@@ -34,7 +36,7 @@ public class RendezVousController {
 	}
 	
 	//UPDATE
-	@RequestMapping(method= RequestMethod.PUT , value="/RendezVous")
+	@PutMapping("/RendezVous")
 	public void UpdateRDV(@RequestBody Rendez_vous rdv) {
 		RendezVousService.UpdateRDV(rdv);
 		System.out.println("RdV modifié !");
@@ -42,7 +44,7 @@ public class RendezVousController {
 	}
 	
 	//ADD
-	@RequestMapping(method= RequestMethod.POST , value="/RendezVous")
+	@PostMapping("/RendezVous")
 	public void AddRDV(@RequestBody Rendez_vous rdv) {
 		RendezVousService.AddRDV(rdv);
 		System.out.println("RdV ajouté !");
