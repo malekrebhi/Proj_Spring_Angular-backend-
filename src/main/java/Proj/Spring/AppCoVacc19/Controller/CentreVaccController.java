@@ -53,5 +53,5 @@ public class CentreVaccController {
 		System.out.println("Centre ajouté !");
 
 	}
-
+//*
 }

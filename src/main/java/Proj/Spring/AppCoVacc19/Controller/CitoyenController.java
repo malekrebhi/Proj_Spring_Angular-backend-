@@ -50,4 +50,5 @@ public class CitoyenController {
 		System.out.println("Citoyen ajouté !");
 
 	}
+	//*
 }
