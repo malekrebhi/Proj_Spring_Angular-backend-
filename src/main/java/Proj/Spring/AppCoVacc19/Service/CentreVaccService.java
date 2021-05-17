@@ -14,6 +14,8 @@ import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Entity.Centre_Vaccination;
 import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
 import Proj.Spring.AppCoVacc19.Exception.CentreVaccNotFoundException;
+import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
+import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;
 import Proj.Spring.AppCoVacc19.Repository.CentreVaccRepository;
 
 @Service
@@ -26,6 +28,9 @@ public class CentreVaccService {
 	public List<Centre_Vaccination> SelectCentre(){
 		List<Centre_Vaccination> centres=new ArrayList<>();
 		CentreVaccRepository.findAll().forEach(centres::add);
+		if (centres.isEmpty()) {
+			throw new NoArgumentsFoundException("600");
+		}
 		return centres;
 	}
 
@@ -38,6 +43,8 @@ public class CentreVaccService {
 	
 	//ADD
 	public void AddCentre(Centre_Vaccination centre) {
+		if(centre.getNomCentre().isEmpty() || centre.getAdresseCentre().isEmpty()) {
+			throw new EmptyInputException("601");}
 		CentreVaccRepository.save(centre);
 	}
 

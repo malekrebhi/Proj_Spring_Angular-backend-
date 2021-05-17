@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Entity.Rendez_vous;
 import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
+import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
+import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;
 import Proj.Spring.AppCoVacc19.Exception.RdVNotFoundException;
 import Proj.Spring.AppCoVacc19.Repository.RendezVousRepository;
 
@@ -26,6 +28,9 @@ public class RendezVousService {
 	public List<Rendez_vous> SelectRendezVous(){
 		List<Rendez_vous> rdvs=new ArrayList<>();
 		RendezVousRepository.findAll().forEach(rdvs::add);
+		if (rdvs.isEmpty()) {
+			throw new NoArgumentsFoundException("600");
+		}
 		return rdvs;
 	}
 	
@@ -40,6 +45,9 @@ public class RendezVousService {
 
 	//ADD
 	public void AddRDV(Rendez_vous rdv) {
+		if (rdv.getDateRDV().isEmpty()) {
+			throw new EmptyInputException("601");
+		}
 		RendezVousRepository.save(rdv);
 	}
 

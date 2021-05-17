@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Entity.Personnel;
 import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
+import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
+import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;
 import Proj.Spring.AppCoVacc19.Exception.PersonnelNotFoundException;
 import Proj.Spring.AppCoVacc19.Repository.PersonnelRepository;
 
@@ -26,6 +28,9 @@ public class PersonnelService {
 	public List<Personnel> SelectPersonnel(){
 		List<Personnel> personnels=new ArrayList<>();
 		PersonnelRepository.findAll().forEach(personnels::add);
+		if (personnels.isEmpty()) {
+			throw new NoArgumentsFoundException("600");
+		}
 		return personnels;
 	}
 	
@@ -38,6 +43,8 @@ public class PersonnelService {
 
 	//ADD
 	public void AddPersonnel(Personnel personnel) {
+		if(personnel.getAdresse_P().isEmpty() || personnel.getDateNaiss_P().equals(null) || personnel.getNom_P().isEmpty() || personnel.getPrenom_P().isEmpty()) {
+			throw new EmptyInputException("601");}
 		PersonnelRepository.save(personnel);
 	}
 

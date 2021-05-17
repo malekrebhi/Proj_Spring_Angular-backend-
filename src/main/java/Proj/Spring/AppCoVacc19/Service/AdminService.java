@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
+import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
+import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;
 import Proj.Spring.AppCoVacc19.Repository.AdminRepository;
 
 @Service
@@ -24,6 +26,9 @@ public class AdminService {
 	public List<Administrateur> SelectAdmin(){
 		List<Administrateur> admins=new ArrayList<>();
 		AdminRepository.findAll().forEach(admins::add);
+		if (admins.isEmpty()) {
+			throw new NoArgumentsFoundException("600");
+		}
 		return admins;
 	}
 	
@@ -38,6 +43,8 @@ public class AdminService {
 	
 	//ADD
 	public void AddAdmin(Administrateur admin) {
+		if(admin.getNom_A().isEmpty() ||admin.getPrenom_A().isEmpty() ||admin.getAdresse_A().isEmpty() ) {
+			throw new EmptyInputException("601");}
 		AdminRepository.save(admin);
 	}
 
