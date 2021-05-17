@@ -13,29 +13,35 @@ import javax.persistence.Table;
 	@Table(name = "Centre_Vaccination")
 	public class Centre_Vaccination {
 	//Centre_Vaccination(idCentre, nomCentre, adresseCentre, nbPersonnel, stockVacc, #CIN_A)
+		
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "idCentre" , unique=true)
 		private int idCentre;
+		
 		@Column(name = "nomCentre")
 		private String nomCentre;
+		
 		@Column(name = "adresseCentre")
 		private String adresseCentre;
+		
 		@Column(name = "nbPersonnel")
 		private int nbPersonnel;
+		
 		@Column(name = "stockVacc")
 		private int stockVacc;
+		
 		@OneToOne
 		private Administrateur admin;
-		public Centre_Vaccination(String nomCentre, String adresseCentre, int nbPersonnel, int stockVacc,
-				Administrateur admin) {
+		
+		public Centre_Vaccination(String nomCentre, String adresseCentre, int nbPersonnel, int stockVacc
+				) {
 			super();
-			//this.idCentre = idCentre;
 			this.nomCentre = nomCentre;
 			this.adresseCentre = adresseCentre;
 			this.nbPersonnel = nbPersonnel;
 			this.stockVacc = stockVacc;
-			this.admin = admin;
+		
 		}
 		public Centre_Vaccination() {
 			super();
@@ -79,7 +85,7 @@ import javax.persistence.Table;
 		@Override
 		public String toString() {
 			return "Centre_Vaccination [idCentre=" + idCentre + ", nomCentre=" + nomCentre + ", adresseCentre="
-					+ adresseCentre + ", nbPersonnel=" + nbPersonnel + ", stockVacc=" + stockVacc + ", admin=" + admin
+					+ adresseCentre + ", nbPersonnel=" + nbPersonnel + ", stockVacc=" + stockVacc 
 					+ "]";
 		}
 	}

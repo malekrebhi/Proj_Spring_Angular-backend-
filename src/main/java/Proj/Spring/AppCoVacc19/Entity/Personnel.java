@@ -1,9 +1,10 @@
 package Proj.Spring.AppCoVacc19.Entity;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -12,9 +13,14 @@ import javax.persistence.Table;
 @Table(name = "Personnel")
 public class Personnel {
 	
-	@Id
 
-	@Column(name = "CIN_P" , unique=true)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idPersonnel" , unique=true)
+	private int idPersonnel;
+	
+
+	@Column(name = "CIN_P" )
 	private int CIN_P;
 	
 	@Column(name = "nom_P")
@@ -27,7 +33,7 @@ public class Personnel {
 	private String adresse_P;
 	
 	@Column(name = "dateNaiss_P")
-	private Date dateNaiss_P;
+	private String dateNaiss_P;
 	
 	@Column(name = "tel_P" , length=8)
 	private int tel_P;
@@ -43,8 +49,8 @@ public class Personnel {
 
 	
 
-	public Personnel(int CIN_P,String nom_P, String prenom_P, String adresse_P, Date dateNaiss_P, int tel_P,
-			String horaire_P, float salaire_P, Centre_Vaccination centre) {
+	public Personnel(int CIN_P,String nom_P, String prenom_P, String adresse_P, String dateNaiss_P, int tel_P,
+			String horaire_P, float salaire_P ) {
 		super();
 		this.CIN_P = CIN_P;
 		this.nom_P = nom_P;
@@ -54,11 +60,17 @@ public class Personnel {
 		this.tel_P = tel_P;
 		this.horaire_P = horaire_P;
 		this.salaire_P = salaire_P;
-		this.centre = centre;
+		
 	}
 
 	public Personnel() {
 		super();
+	}
+	public int getIdPersonnel() {
+		return idPersonnel;
+	}
+	public void setIdPersonnel(int idPersonnel) {
+		this.idPersonnel = idPersonnel;
 	}
 
 	public int getCIN_P() {
@@ -93,11 +105,11 @@ public class Personnel {
 		this.adresse_P = adresse_P;
 	}
 
-	public Date getDateNaiss_P() {
+	public String getDateNaiss_P() {
 		return dateNaiss_P;
 	}
 
-	public void setDateNaiss_P(Date dateNaiss_P) {
+	public void setDateNaiss_P(String dateNaiss_P) {
 		this.dateNaiss_P = dateNaiss_P;
 	}
 
@@ -135,9 +147,9 @@ public class Personnel {
 
 	@Override
 	public String toString() {
-		return "Personnel [CIN_P=" + CIN_P + ", nom_P=" + nom_P + ", prenom_P=" + prenom_P + ", adresse_P=" + adresse_P
+		return "Personnel [idPersonnel= "+ idPersonnel+", CIN_P=" + CIN_P + ", nom_P=" + nom_P + ", prenom_P=" + prenom_P + ", adresse_P=" + adresse_P
 				+ ", dateNaiss_P=" + dateNaiss_P + ", tel_P=" + tel_P + ", horaire_P=" + horaire_P + ", salaire_P="
-				+ salaire_P + ", centre=" + centre + "]";
+				+ salaire_P  + "]";
 	}
 
 }

@@ -1,9 +1,11 @@
 package Proj.Spring.AppCoVacc19.Controller;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,30 +24,41 @@ public class AdminController {
 	@Autowired
 	private AdminService AdminService;
 
-	//SELECT
-	@GetMapping("/Admin/Select")
+	@CrossOrigin
+	
+	//GET 
+	@GetMapping("/Admin")
 	public List<Administrateur> SelectAdmin(){
 		return AdminService.SelectAdmin();
 		
 	}
 	
+
+	//GET by ID
+	@GetMapping("/Admin/{idAdmin}")
+	public ResponseEntity<Administrateur> getAdminById(@PathVariable int idAdmin){	
+		return 	AdminService.getAdminById(idAdmin);
+
+	}
+	 
+	
 	//DELETE
-	@DeleteMapping( "/Admin/Delete/{id}")
-	public void DeleteAdmin(@PathVariable int id) {
-		AdminService.DeleteAdmin(id);
-		System.out.println("Admin supprimé !");
+	@DeleteMapping( "/Admin/{idAdmin}")
+	public ResponseEntity<Map<String,Boolean>> deleteAdmin(@PathVariable int idAdmin){
+		return AdminService.deleteAdmin(idAdmin);
 	}
 	
 	//UPDATE
-	@PutMapping("/Admin/Update")
-	public void UpdateAdmin(@RequestBody Administrateur admin) {
-		AdminService.UpdateAdmin(admin);
+	@PutMapping("/Admin/{idAdmin}")
+	public void UpdateAdmin(@PathVariable int idAdmin,@RequestBody Administrateur admin) {
+		AdminService.UpdateAdmin(idAdmin,admin);
 		System.out.println("Admin modifié !");
 
 	}
 	
 	//ADD
-	@PostMapping("/Admin/Add")
+	
+	@PostMapping("/Admin")
 	public void AddAdmin(@RequestBody Administrateur admin) {
 		AdminService.AddAdmin(admin);
 		System.out.println("Admin ajouté !");

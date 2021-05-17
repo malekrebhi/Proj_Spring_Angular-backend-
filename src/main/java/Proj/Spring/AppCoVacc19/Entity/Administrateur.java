@@ -1,9 +1,10 @@
 package Proj.Spring.AppCoVacc19.Entity;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,8 +15,14 @@ import org.springframework.stereotype.Component;
 	@Table(name = "Administrateur")
 	public class Administrateur {
 	//CIN_A,nom_A,prenom_A,adresse_A, dateNaiss_A, tel_A, matricule
-		@Id
-		@Column(name = "CIN_A" , unique=true)
+	    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idAdmin" , unique=true)
+	private int idAdmin;
+	
+		
+		@Column(name = "CIN_A" )
 		private int CIN_A;
 			
 		@Column(name = "nom_A")
@@ -28,7 +35,7 @@ import org.springframework.stereotype.Component;
 		private String adresse_A;
 		
 		@Column(name = "dateNaiss_A")
-		private Date dateNaiss_A;
+		private String dateNaiss_A;
 		
 		@Column(name = "tel_A" , length=8)
 		private int tel_A;
@@ -36,7 +43,7 @@ import org.springframework.stereotype.Component;
 		@Column(name = "matricule" , unique=true)
 		private int matricule;
 
-		public Administrateur(int CIN_A, String nom_A, String prenom_A, String adresse_A, Date dateNaiss_A, int tel_A,
+		public Administrateur(int CIN_A, String nom_A, String prenom_A, String adresse_A, String dateNaiss_A, int tel_A,
 				int matricule) {
 			super();
 			this.CIN_A = CIN_A;
@@ -52,6 +59,12 @@ import org.springframework.stereotype.Component;
 			super();
 		}
 
+		public int getIdAdmin() {
+			return idAdmin;
+		}
+		public void setIdAdmin(int idAdmin) {
+			this.idAdmin = idAdmin;
+		}
 		public int getCIN_A() {
 			return CIN_A;
 		}
@@ -84,11 +97,11 @@ import org.springframework.stereotype.Component;
 			this.adresse_A = adresse_A;
 		}
 
-		public Date getDateNaiss_A() {
+		public String getDateNaiss_A() {
 			return dateNaiss_A;
 		}
 
-		public void setDateNaiss_A(Date dateNaiss_A) {
+		public void setDateNaiss_A(String dateNaiss_A) {
 			this.dateNaiss_A = dateNaiss_A;
 		}
 
@@ -110,7 +123,7 @@ import org.springframework.stereotype.Component;
 
 		@Override
 		public String toString() {
-			return "Administrateur [CIN_A=" + CIN_A + ", nom_A=" + nom_A + ", prenom_A=" + prenom_A + ", adresse_A="
+			return "Administrateur [idAdmin=" + idAdmin + ", CIN_A=" + CIN_A + ", nom_A=" + nom_A + ", prenom_A=" + prenom_A + ", adresse_A="
 					+ adresse_A + ", dateNaiss_A=" + dateNaiss_A + ", tel_A=" + tel_A + ", matricule=" + matricule + "]";
 		}
 

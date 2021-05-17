@@ -1,6 +1,5 @@
 package Proj.Spring.AppCoVacc19.Entity;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,19 +16,23 @@ import javax.persistence.Table;
 @Table(name = "Rendez_vous")
 public class Rendez_vous {
 //Rendez-vous(idRDV, dateRDV, #CIN_C)
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idRDV" , unique=true)
 	private int idRDV;
+	
 	@Column(name = "dateRDV")
-	private Date dateRDV;
+	private String dateRDV;
+	
 	@OneToOne
 	private Citoyen citoyen;
-	public Rendez_vous(Date dateRDV, Citoyen citoyen) {
+	
+	public Rendez_vous(String dateRDV) {
 		super();
 		//this.idRDV = idRDV;
 		this.dateRDV = dateRDV;
-		this.citoyen = citoyen;
+	
 	}
 	public Rendez_vous() {
 		super();
@@ -40,10 +43,10 @@ public class Rendez_vous {
 	public void setIdRDV(int idRDV) {
 		this.idRDV = idRDV;
 	}
-	public Date getDateRDV() {
+	public String getDateRDV() {
 		return dateRDV;
 	}
-	public void setDateRDV(Date dateRDV) {
+	public void setDateRDV(String dateRDV) {
 		this.dateRDV = dateRDV;
 	}
 	public Citoyen getCitoyen() {
@@ -54,6 +57,6 @@ public class Rendez_vous {
 	}
 	@Override
 	public String toString() {
-		return "Rendez_vous [idRDV=" + idRDV + ", dateRDV=" + dateRDV + ", citoyen=" + citoyen + "]";
+		return "Rendez_vous [idRDV=" + idRDV + ", dateRDV=" + dateRDV  + "]";
 	}
 }

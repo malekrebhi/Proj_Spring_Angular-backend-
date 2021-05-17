@@ -1,8 +1,11 @@
 package Proj.Spring.AppCoVacc19.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,31 +23,40 @@ public class RendezVousController {
 	@Autowired
 	private RendezVousService RendezVousService;
 
-	//SELECT
-	@GetMapping("/RendezVous/Select")
+	@CrossOrigin
+	
+	//GET
+	@GetMapping("/RendezVous")
 	public List<Rendez_vous> SelectRendezVous(){
 	    return RendezVousService.SelectRendezVous();
 		
 	}
 	
-	//DELETE
-	@DeleteMapping("/RendezVous/Delete/{id}")
-	public void DeleteRDV(@PathVariable int id) {
-		RendezVousService.DeleteRDV(id);
-		System.out.println("RdV supprimé !");
+	
+	//GET by ID
+	@GetMapping("/RendezVous/{idRDV}")
+	public ResponseEntity<Rendez_vous> getRdvById(@PathVariable int idRDV){	
+		return 	RendezVousService.getRdvById(idRDV);
 
+		}
+	
+	
+	//DELETE
+	@DeleteMapping("/RendezVous/{idRDV}")
+	public ResponseEntity<Map<String,Boolean>> deleteRdv(@PathVariable int idRDV){
+		return RendezVousService.deleteRdv(idRDV);
 	}
 	
 	//UPDATE
-	@PutMapping("/RendezVous/Update")
-	public void UpdateRDV(@RequestBody Rendez_vous rdv) {
-		RendezVousService.UpdateRDV(rdv);
+	@PutMapping("/RendezVous/{idRDV}")
+	public void UpdateRDV(@PathVariable int idRDV,@RequestBody Rendez_vous rdv) {
+		RendezVousService.UpdateRDV(idRDV,rdv);
 		System.out.println("RdV modifié !");
 
 	}
 	
 	//ADD
-	@PostMapping("/RendezVous/Add")
+	@PostMapping("/RendezVous")
 	public void AddRDV(@RequestBody Rendez_vous rdv) {
 		RendezVousService.AddRDV(rdv);
 		System.out.println("RdV ajouté !");

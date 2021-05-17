@@ -1,9 +1,10 @@
 package Proj.Spring.AppCoVacc19.Entity;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,21 +14,33 @@ import javax.persistence.Table;
 @Table(name="Citoyen")
 public class Citoyen  {
 //CIN_C,nom_C,prenom_C,adresse_C, dateNaiss_C, tel_C, etat
+	
+	
 	@Id
-
-	@Column(name = "CIN_C" , unique=true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idCitoyen" , unique=true)
+	private int idCitoyen;
+	
+	
+	@Column(name = "CIN_C" )
 	private int CIN_C;
+	
 	@Column(name = "nom_C")
 	private String nom_C;
+	
 	@Column(name = "prenom_C")
 	private String prenom_C;
+	
 	@Column(name = "dateNaiss_C")
-	private Date dateNaiss_C;
+	private String dateNaiss_C;
+	
 	@Column(name = "tel_C" , length=8)
 	private int tel_C;
+	
 	@Column(name = "etat")
 	private boolean etat=false;
-	public Citoyen(int CIN_C,String nom_C, String prenom_C, Date dateNaiss_C, int tel_C) {
+	
+	public Citoyen(int CIN_C,String nom_C, String prenom_C, String dateNaiss_C, int tel_C) {
 		super();
 		this.CIN_C = CIN_C;
 		this.nom_C = nom_C;
@@ -37,6 +50,12 @@ public class Citoyen  {
 	}
 	public Citoyen() {
 		super();
+	}
+	public int getIdCitoyen() {
+		return idCitoyen;
+	}
+	public void setIdCitoyen(int idCitoyen) {
+		this.idCitoyen = idCitoyen;
 	}
 	public int getCIN_C() {
 		return CIN_C;
@@ -56,10 +75,10 @@ public class Citoyen  {
 	public void setPrenom_C(String prenom_C) {
 		this.prenom_C = prenom_C;
 	}
-	public Date getDateNaiss_C() {
+	public String getDateNaiss_C() {
 		return dateNaiss_C;
 	}
-	public void setDateNaiss_C(Date dateNaiss_C) {
+	public void setDateNaiss_C(String dateNaiss_C) {
 		this.dateNaiss_C = dateNaiss_C;
 	}
 	public int getTel_C() {
@@ -76,7 +95,7 @@ public class Citoyen  {
 	}
 	@Override
 	public String toString() {
-		return "Citoyen [CIN_C=" + CIN_C + ", nom_C=" + nom_C + ", prenom_C=" + prenom_C + ", dateNaiss_C="
+		return "Citoyen [idCitoyen= "+ idCitoyen  +", CIN_C=" + CIN_C + ", nom_C=" + nom_C + ", prenom_C=" + prenom_C + ", dateNaiss_C="
 				+ dateNaiss_C + ", tel_C=" + tel_C + ", etat=" + etat + "]";
 	}
 }
