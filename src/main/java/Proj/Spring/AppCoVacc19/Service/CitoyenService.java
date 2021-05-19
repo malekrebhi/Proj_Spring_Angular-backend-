@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Entity.Citoyen;
-import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
 import Proj.Spring.AppCoVacc19.Exception.CitoyenNotFoundException;
 import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
 import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;

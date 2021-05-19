@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import Proj.Spring.AppCoVacc19.Entity.Administrateur;
 import Proj.Spring.AppCoVacc19.Entity.Personnel;
-import Proj.Spring.AppCoVacc19.Exception.AdminNotFoundException;
 import Proj.Spring.AppCoVacc19.Exception.EmptyInputException;
 import Proj.Spring.AppCoVacc19.Exception.NoArgumentsFoundException;
 import Proj.Spring.AppCoVacc19.Exception.PersonnelNotFoundException;
