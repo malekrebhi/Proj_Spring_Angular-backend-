@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class LogAspect {
 	protected Logger logger = LoggerFactory.getLogger(LogAspect.class);
 	
+	
 	@Before("within(Proj.Spring.AppCoVacc19..*)")
 	public void logBefore(JoinPoint joinPoint) {
 		// Log method name
@@ -24,12 +25,14 @@ public class LogAspect {
 				logger.info("Argument: " + obj.toString());}}}
 	
 	
+	
 	@AfterReturning(pointcut =  "within(Proj.Spring.AppCoVacc19..*)", returning = "returnObject")
 	public void logAfterReturning(JoinPoint joinPoint, Object returnObject) {
 		// Log method name
 		logger.info("Return from method: " + joinPoint.getSignature().toLongString());
 		// Log the return value
 		logger.info("Return Object: " + returnObject);}
+	
 	
 	
 	@AfterThrowing(pointcut = "within(Proj.Spring.AppCoVacc19..*)", throwing = "ex")
