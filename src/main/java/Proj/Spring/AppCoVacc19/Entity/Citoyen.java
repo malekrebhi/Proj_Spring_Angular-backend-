@@ -25,11 +25,11 @@ public class Citoyen  {
 	@Column(name = "CIN_C" )
 	private int CIN_C;
 	
-	@Column(name = "nom_C")
-	private String nom_C;
+	@Column(name = "nom_prenom_C ")
+	private String nom_prenom_C;
 	
-	@Column(name = "prenom_C")
-	private String prenom_C;
+	@Column(name = "mail_C")
+	private String mail_C;
 	
 	@Column(name = "dateNaiss_C")
 	private String dateNaiss_C;
@@ -40,13 +40,15 @@ public class Citoyen  {
 	@Column(name = "etat")
 	private boolean etat=false;
 	
-	public Citoyen(int CIN_C,String nom_C, String prenom_C, String dateNaiss_C, int tel_C) {
+	
+	public Citoyen(int cIN_C, String nom_prenom_C, String mail_C, String dateNaiss_C, int tel_C, boolean etat) {
 		super();
-		this.CIN_C = CIN_C;
-		this.nom_C = nom_C;
-		this.prenom_C = prenom_C;
+		CIN_C = cIN_C;
+		this.nom_prenom_C = nom_prenom_C;
+		this.mail_C = mail_C;
 		this.dateNaiss_C = dateNaiss_C;
 		this.tel_C = tel_C;
+		this.etat = etat;
 	}
 	public Citoyen() {
 		super();
@@ -63,17 +65,19 @@ public class Citoyen  {
 	public void setCIN_C(int cIN_C) {
 		CIN_C = cIN_C;
 	}
-	public String getNom_C() {
-		return nom_C;
+	
+
+	public String getNom_prenom_C() {
+		return nom_prenom_C;
 	}
-	public void setNom_C(String nom_C) {
-		this.nom_C = nom_C;
+	public void setNom_prenom_C(String nom_prenom_C) {
+		this.nom_prenom_C = nom_prenom_C;
 	}
-	public String getPrenom_C() {
-		return prenom_C;
+	public String getMail_C() {
+		return mail_C;
 	}
-	public void setPrenom_C(String prenom_C) {
-		this.prenom_C = prenom_C;
+	public void setMail_C(String mail_C) {
+		this.mail_C = mail_C;
 	}
 	public String getDateNaiss_C() {
 		return dateNaiss_C;
@@ -95,7 +99,8 @@ public class Citoyen  {
 	}
 	@Override
 	public String toString() {
-		return "Citoyen [idCitoyen= "+ idCitoyen  +", CIN_C=" + CIN_C + ", nom_C=" + nom_C + ", prenom_C=" + prenom_C + ", dateNaiss_C="
-				+ dateNaiss_C + ", tel_C=" + tel_C + ", etat=" + etat + "]";
+		return "Citoyen [idCitoyen=" + idCitoyen + ", CIN_C=" + CIN_C + ", nom_prenom_C=" + nom_prenom_C + ", mail_C="
+				+ mail_C + ", dateNaiss_C=" + dateNaiss_C + ", tel_C=" + tel_C + ", etat=" + etat + "]";
 	}
+	
 }

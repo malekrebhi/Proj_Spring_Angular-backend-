@@ -42,7 +42,7 @@ public class CitoyenService {
 	
 	//ADD
 	public void AddCitoyen(Citoyen citoyen) {
-		if(citoyen.getNom_C().isEmpty() || citoyen.getPrenom_C().isEmpty() || citoyen.getDateNaiss_C().equals(null)) {
+		if(citoyen.getNom_prenom_C().isEmpty() || citoyen.getMail_C().isEmpty() || citoyen.getDateNaiss_C().equals(null)) {
 			throw new EmptyInputException("601");}
 		CitoyenRepository.save(citoyen);
 	}
@@ -51,8 +51,8 @@ public class CitoyenService {
 	public  ResponseEntity<Citoyen> UpdateCitoyen(int idCitoyen,Citoyen citoyen) {
 		Citoyen existingCentre= CitoyenRepository.findById(idCitoyen).orElseThrow(() -> new CitoyenNotFoundException("Citoyen does not exist with cin :"+idCitoyen));
 		existingCentre.setCIN_C(citoyen.getCIN_C());
-		existingCentre.setNom_C(citoyen.getNom_C());
-		existingCentre.setPrenom_C(citoyen.getPrenom_C());
+		existingCentre.setNom_prenom_C(citoyen.getNom_prenom_C());
+		existingCentre.setMail_C(citoyen.getMail_C());
 		existingCentre.setDateNaiss_C(citoyen.getDateNaiss_C());
 		existingCentre.setTel_C(citoyen.getTel_C());
 		existingCentre.setEtat(citoyen.isEtat());
