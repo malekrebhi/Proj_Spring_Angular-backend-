@@ -3,6 +3,7 @@ package Proj.Spring.AppCoVacc19.Controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.LoggerFactory;
+import Proj.Spring.AppCoVacc19.Aspect.LogAspect;
 import  Proj.Spring.AppCoVacc19.Entity.Rendez_vous;
 import  Proj.Spring.AppCoVacc19.Service.RendezVousService;
 
@@ -22,6 +25,8 @@ public class RendezVousController {
 	
 	@Autowired
 	private RendezVousService RendezVousService;
+	
+	private final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
 	@CrossOrigin
 	
@@ -55,14 +60,15 @@ public class RendezVousController {
 
 	}
 	
+	
 	//ADD
 	@PostMapping("/RendezVous")
 	public void AddRDV(@RequestBody Rendez_vous rdv) {
-		RendezVousService.AddRDV(rdv);
-		System.out.println("RdV ajouté !");
-
+		if (RendezVousService.AddRDV(rdv) == true) {
+			logger.info("Rendez-vous ajouté");
+		}
+		else logger.warn("Rendez-vous n est pas ajouté!! Choisissez une autre date !");
 	}
-
 
 
 //**

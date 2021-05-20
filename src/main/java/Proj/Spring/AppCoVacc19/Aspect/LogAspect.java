@@ -18,24 +18,38 @@ public class LogAspect {
 	@Before("within(Proj.Spring.AppCoVacc19..*)")
 	public void logBefore(JoinPoint joinPoint) {
 		// Log method name
-		logger.info("Invoke method: " + joinPoint.getSignature().toLongString());
+		logger.info("INVOKE METHOD: " + joinPoint.getSignature().toLongString());
 		// Log arguments
 		if(joinPoint.getArgs() != null) {
 			for(Object obj : joinPoint.getArgs()) {
-				logger.info("Argument: " + obj.toString());}}}
+				logger.info("ARGUMENT: " + obj.toString());}}}
 	
 	
 	
 	@AfterReturning(pointcut =  "within(Proj.Spring.AppCoVacc19..*)", returning = "returnObject")
 	public void logAfterReturning(JoinPoint joinPoint, Object returnObject) {
 		// Log method name
-		logger.info("Return from method: " + joinPoint.getSignature().toLongString());
+		logger.info("RETURN FROM METHOD: " + joinPoint.getSignature().toLongString());
 		// Log the return value
-		logger.info("Return Object: " + returnObject);}
+		logger.info("RETURN OBJECT: " + returnObject);}
 	
 	
 	
 	@AfterThrowing(pointcut = "within(Proj.Spring.AppCoVacc19..*)", throwing = "ex")
 	public void logAfterThrowing(Exception ex) {
 		// Log the exception message
-		logger.error("Error: " + ex.getMessage());}}
+		logger.error("ERROR: " + ex.getMessage());}
+
+     
+    /*
+    @Before("execution(void set*(*))")
+    public void trackChange(JoinPoint point) {
+	     String methodName  = point.getSignature().toLongString();
+	     Object newValue = point.getArgs()[0];
+	     logger.info(methodName + "ABOUT TO CHANGE TO" + newValue + "on" + point.getTarget());}
+    
+    */
+}
+
+
+

@@ -41,15 +41,6 @@ public class RendezVousService {
 
 
 
-	//ADD
-	public void AddRDV(Rendez_vous rdv) {
-		if (rdv.getDateRDV().isEmpty()) {
-			throw new EmptyInputException("601");
-		}
-		RendezVousRepository.save(rdv);
-	}
-
-
 	//UPDATE
 	public ResponseEntity<Rendez_vous> UpdateRDV(int idRDV,Rendez_vous rdv) {
 		Rendez_vous existingrdv= RendezVousRepository.findById(idRDV).orElseThrow(() -> new RdVNotFoundException("Rendez-Vous does not exist with cin :"+idRDV));
@@ -67,6 +58,40 @@ public class RendezVousService {
 		Map<String,Boolean> response=new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
+	}
+	
+	public boolean verifierDispo(String date) {
+		return RendezVousRepository.existsRendezVousByDateRDV(date);
+		
+	}
+	
+	//ADD
+	public boolean AddRDV(Rendez_vous rdv) {
+		if (rdv.getDateRDV().isEmpty()) {
+			throw new EmptyInputException("601");
+		}
+		if (verifierDispo(rdv.getDateRDV()) == true) {
+			return false;
+		}
+		else {
+			RendezVousRepository.save(rdv);
+			return true;
+		}
+			
+		}
+		
+	
+	
+	
+	public boolean addRDVDate(String date) {
+		Rendez_vous rdv = new Rendez_vous(date);
+		if (verifierDispo(date) == true) {
+			return false;
+		}
+		else {
+			RendezVousRepository.save(rdv);
+			return true;
+		}
 	}
 
 }
