@@ -41,14 +41,7 @@ public class LogAspect {
 		logger.error("ERROR: " + ex.getMessage());}
 
      
-    /*
-    @Before("execution(void set*(*))")
-    public void trackChange(JoinPoint point) {
-	     String methodName  = point.getSignature().toLongString();
-	     Object newValue = point.getArgs()[0];
-	     logger.info(methodName + "ABOUT TO CHANGE TO" + newValue + "on" + point.getTarget());}
     
-    */
 }
 
 
